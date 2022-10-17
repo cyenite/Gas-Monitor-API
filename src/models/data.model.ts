@@ -15,17 +15,17 @@ export class Data extends Entity {
   unitPrice: string;
 
   @property({
+    type: 'string',
+    required: true,
+  })
+  deviceId: string;
+
+  @property({
     type: 'number',
     id: true,
     generated: true,
   })
   id?: number;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  deviceId: string;
 
 
   constructor(data?: Partial<Data>) {

@@ -105,7 +105,7 @@ export class DataController {
     return this.dataRepository.findById(id, filter);
   }
 
-  @get('/data/{deviceId}/{name}/{value}')
+  @get('/data/{deviceId}/{weight}/{unitPrice}')
   @response(200, {
     description: 'Data model instance',
     content: {
