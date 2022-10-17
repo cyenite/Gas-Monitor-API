@@ -17,15 +17,9 @@ export class Data extends Entity {
   @property({
     type: 'string',
     required: true,
-  })
-  deviceId: string;
-
-  @property({
-    type: 'number',
     id: true,
-    generated: true,
   })
-  id?: number;
+  deviceId: number;
 
 
   constructor(data?: Partial<Data>) {

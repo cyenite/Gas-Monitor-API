@@ -31,7 +31,6 @@ export class DataController {
         'application/json': {
           schema: getModelSchemaRef(Data, {
             title: 'NewData',
-            exclude: ['id'],
           }),
         },
       },
@@ -117,11 +116,36 @@ export class DataController {
   async addDataUsingParams(
     @param.path.string('weight') weight: string,
     @param.path.string('unitPrice') unitPrice: string,
-    @param.path.string('deviceId') deviceId: string,
+    @param.path.string('deviceId') deviceId: number,
     data: Data = new Data({weight: weight, unitPrice: unitPrice, deviceId: deviceId}),
   ): Promise<Data> {
     return this.dataRepository.create(data);
   }
+
+  @get('/replace/{deviceId}/{weight}/{unitPrice}')
+  @response(200, {
+    description: 'Data model instance',
+    content: {
+      'application/json': {
+        schema: getModelSchemaRef(Data, {includeRelations: true}),
+      },
+    },
+  })
+  async replaceDataUsingParams(
+    @param.path.string('weight') weight: string,
+    @param.path.string('unitPrice') unitPrice: string,
+    @param.path.string('deviceId') deviceId: number,
+    data: Data = new Data({weight: weight, unitPrice: unitPrice, deviceId: deviceId}),
+  ): Promise<Data> {
+    if ((await this.dataRepository.exists(deviceId))) {
+      this.dataRepository.replaceById(deviceId, data);
+      return data;
+    }
+    else {
+      return this.dataRepository.create(data);
+    }
+  }
+
 
   @patch('/data/{id}')
   @response(204, {

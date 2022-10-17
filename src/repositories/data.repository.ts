@@ -6,7 +6,7 @@ import {Data, DataRelations} from '../models/data.model';
 
 export class DataRepository extends DefaultCrudRepository<
   Data,
-  typeof Data.prototype.id,
+  typeof Data.prototype.deviceId,
   DataRelations
 > {
   constructor(
