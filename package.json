@@ -58,7 +58,7 @@
     "loopback-connector-mongodb": "^6.1.0",
     "loopback-connector-realtime-database": "^2.1.0",
     "loopback4-connector-firebase-admin": "^1.0.0",
-    "loopback4-connector-firestore": "cyenite/custom-loopback4-firestore-connector#main",
+    "loopback4-connector-firestore": "cyenite/lb4-custom-connector-gas#master",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
